@@ -1,0 +1,26 @@
+1. 存储采用单数据库，单表存储。 django不能实现通过view创建表的功能，而且也完全没有必要。
+mysql数据库的表的个数没有限制，表中记录的个数也没有限制。即使五百万条记录，每个用户存储20条，也可以供25万用户使用。
+
+MySQL本身并没有对单表最大记录数进行限制，这个数值取决于你的操作系统对单个文件的限制本身。 业界流传是500万行。 超过500万行就要考虑分表分库了。 阿里巴巴《Java 开发手册》提出单表行数超过500 万行或者单表容量超过2GB，才推荐进行分库分表。
+
+2.
+用户信息表，存储登录用户的状态。通过邮箱或电话号码进行登录,然后找到对应的id，通过id关联到密码表，从密码表中读取数据。
+密码表存储，用户的密码信息。(或许应该设置一个外键)
+
+3.development structure
+3.1 table structure
+login table:
+    id loginName loginPassword
+    1   admin       admin123
+password table:
+    id siteName     phone       email               userPassword    userName
+    1   bing    18285574257   2103208467@qq.com      admin123      一米五的大高个
+
+3.2 request 流程
+request http://passwd.pwall.icu get login page(include registered page and reset passwd page)
+
+login success:
+
+3.3 function module 说明
+
+

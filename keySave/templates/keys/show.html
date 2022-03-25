@@ -1,0 +1,32 @@
+
+<form action="" method="post">
+	站点名: <input type="text" name="siteName"/>
+	<input type="button" value="解析" id="sub" onclick="jiemi()">
+	<input type="submit" value="submit" >
+</form>
+<script>
+	    /**
+     * AES-256-ECB对称解密
+     * @param textBase64 {string} 要解密的密文，Base64格式
+     * @param secretKey {string} 密钥，43位随机大小写与数字
+     * @returns {string} 解密后的明文
+     */
+    function AES_ECB_DECRYPT(textBase64, secretKey) {
+        var keyHex = CryptoJS.enc.Base64.parse(secretKey);
+        var decrypt = CryptoJS.AES.decrypt(textBase64, keyHex, {
+            "mode": CryptoJS.mode.ECB,
+            "padding": CryptoJS.pad.Pkcs7
+        });
+        return CryptoJS.enc.Utf8.stringify(decrypt);
+    }
+
+	function jiemi(){
+			//get message from server
+		    var message = "123加密解密工具测试类sss";
+			//get key from server
+    		var key = "KUf4hM5rThssysJhcRFCfxLR8Imihjl0eMsyhh1M7Wk";
+
+    		var ecbDecrypt = AES_ECB_DECRYPT(ecbEncrypt, key);
+    		console.log("ecb结果比较---", message === ecbDecrypt)
+	}
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示所有用户密码</title>
+</head>
+<body>
+    <h2>显示所有的用户密码</h2>
+    <!--通过列表显示，每个列表后面有 修改,删除 按钮。 -->
+	{% for item in data %}
+	<br>
+	<h3>
+		<span>表id:</span> <span>{{ item.id }}</span>
+	</h3>
+	<h3>
+		<span>用户登录id: </span> <span>{{ item.siteId }}</span>
+	</h3>
+	<h3>
+		<span>用户密码: </span> <span>{{ item.sitePasswdEncry}}</span>
+	</h3>
+	<h3>
+		<span>站点名: </span> <span>{{ item.siteName }}</span>
+	</h3>
+		<h3>
+		<span>站点url: </span> <span> {{ item.siteDomain }}</span>
+	</h3>
+	<h3>
+		<span>站点登录url: </span> <span> {{ item.siteLoginUrl }}</span>
+	</h3>
+	<h3>
+		<span>账号区域: </span> <span> {{ item.siteLoginArea }}</span>
+	</h3>
+	<h3>
+		<span>key: </span> <span> {{ item.key }}</span>
+	</h3>
+	<h3>
+		<span>算法: </span> <span> {{ item.algor }}</span>
+	</h3>
+
+	
+	{% endfor %}
+</body>
+</html>

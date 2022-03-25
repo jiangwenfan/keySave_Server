@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加密码信息</title>
+</head>
+<body>
+<h2>添加密码信息</h2>
+
+<form action="" method="post">
+    <p>
+        登录名: <input type="text" name="siteId">
+    </p>
+    <p>
+        密码: <input type="password" name="sitePasswdEncry"  id="sitePasswdEncry">
+    </p>
+    <p>
+        站点名: <input type="text" name="siteName" placeholder="淘宝">
+    </p>
+    <p>
+        站点域名: <input type="text" name="siteDomain" placeholder="https://wwww.taobao.com">
+    </p>
+    <p>
+        账号区域: <input type="text" name="siteLoginArea" placeholder="大陆，欧美账号">
+    </p>
+    <p>
+        登录url: <input type="text" name="siteLoginUrl">
+    </p>
+    <p>
+        加密算法:<select name="algor">
+                <option value="des">DES</option>
+                <option value="3des">3DES</option>
+                <option value="rsa">RSA</option>
+                <option value="aes">AES</option>
+            </select>
+    </p>
+    <button onclick="jiami()" id="sub">加密提交</button>
+</form>
+</body>
+<script src="http://cdn.bootcdn.net/ajax/libs/crypto-js/4.0.0/crypto-js.js"></script>
+<script>
+    /**
+     * AES-256-ECB对称加密
+     * @param text {string} 要加密的明文
+     * @param secretKey {string} 密钥，43位随机大小写与数字
+     * @returns {string} 加密后的密文，Base64格式
+     */
+    function AES_ECB_ENCRYPT(text, secretKey) {
+        var keyHex = CryptoJS.enc.Base64.parse(secretKey);
+        var messageHex = CryptoJS.enc.Utf8.parse(text);
+        var encrypted = CryptoJS.AES.encrypt(messageHex, keyHex, {
+            "mode": CryptoJS.mode.ECB,
+            "padding": CryptoJS.pad.Pkcs7
+        });
+        return encrypted.toString();
+    }
+
+
+    //get password
+    function jiami(){
+        var message = document.getElementById("id_password").value;  //get明文密码
+        //var key = document.getElementById("id_key").value; //getkey
+        var key = "KUf4hM5rThssysJhcRFCfxLR8Imihjl0eMsyhh1M7Wk";
+
+        var ecbEncrypt = AES_ECB_ENCRYPT(message, key); //加密得到密文
+
+        document.getElementById("id_password").value = ecbEncrypt; //提交密文
+        document.getElementById("sub").submit(); //提交表单
+
+        //console.log(message);
+    }
+</script>
+</html>

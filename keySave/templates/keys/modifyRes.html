@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改结果</title>
+</head>
+<body>
+<form action="" method="post">
+    <p>
+        id: <input type="text" name="res" value="{{  item.id }}" readonly style="background:#CCCCCC">
+    </p>
+    <p>
+        登录名: <input type="text" name="siteId" value="{{  item.siteId }}">
+    </p>
+    <p>
+        密码: <input type="password" name="sitePasswdEncry"  id="sitePasswdEncry" value="{{ item.sitePasswdEncry }}">
+    </p>
+    <p>
+        站点名: <input type="text" name="siteName" value="{{ item.siteName }}">
+    </p>
+    <p>
+        站点域名: <input type="text" name="siteDomain" value="{{ item.siteDomain}}">
+    </p>
+     <p>
+        登录url: <input type="text" name="siteLoginUrl" value="{{ item.siteLoginUrl }}">
+    </p>
+    <p>
+        账号区域: <input type="text" name="siteLoginArea" value="{{ item.siteLoginArea}}">
+    </p>
+    <p>
+        加密算法:<select name="algor">
+                <option value="des">DES</option>
+                <option value="3des">3DES</option>
+                <option value="rsa">RSA</option>
+                <option value="aes">AES</option>
+            </select>
+    </p>
+
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

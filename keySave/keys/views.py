@@ -1,38 +1,47 @@
-from django.shortcuts import render
-from cryption import desEncryption,desDecryption
+from django.shortcuts import render,HttpResponse
+from keys.handleFunction.addHandle import  addHandle
+from keys.handleFunction.selectHandle import selectHandle
+from keys.handleFunction.modifyHandle import modifyHandle
+from keys.handleFunction.deleteHandle import deleteHandle
+from keys.handleFunction.userIndexHandle import userIndexHandle
 # Create your views here.
 
-"""
-处理表单函数,添加新的密码信息
-"""
-def addPassword(request):
-    #plaintext = request.
-    pwdPlaintext = "admin123" #从表单出获得密码明文
-    pwdCiphertext = desEncryption(pwdPlaintext) #password encryption
+# FileResponse
 
 """
-处理表单函数,修改密码西信息
+添加新的密码信息
 """
-def modifyPassword(request):
-    pass
+def addPasswd(request):
+	return addHandle(request)
 
 """
-处理表单函数,删除密码信息
+修改密码西信息
 """
-def deletePassword(request):
-    pass
-"""
-处理表单函数,查询用户的所有密码信息
-"""
-def showPassword(request):
-    pass
+def modifyPasswd(request):
+    return modifyHandle(request)
+
 
 """
-返回显示登陆后的个人主页显示页面。
+删除密码信息
+"""
+def deletePasswd(request):
+    return deleteHandle(request)
+
+
+"""
+查询用户的所有密码信息
+"""
+def selectPasswd(request):
+	return selectHandle(request)
+
+
+"""
+显示登陆后的个人主页显示页面。
 """
 def userIndex(request):
-    pass
+    return userIndexHandle(request)
 """
+
 处理登录操作
 """
 def login(request):
@@ -43,4 +52,7 @@ def login(request):
 """
 def register(request):
     pass
+
+def index(request):
+	return render(request,'index.html')
 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+	{% load staticfiles %}
+    <!-- 使用X-UA-Compatible来设置IE浏览器兼容模式 最新渲染模式   -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--
+            viewport 表示用户是否可以缩放页面
+            width 指定视区的逻辑宽度
+            device-width 指示视区宽度应设为设备的屏幕宽度；
+            initial-scale 指令用于设置Web页面的初始化缩放比例
+            initial-scale=1 则将显示未缩放的web文档
+        -->
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <!--    载入Bootstarp的css-->
+        <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <!--    载入jquery-->
+        <script src="/static/jquery-3.6.0.js"></script>
+        <!--    载入Bootstrap的js-->
+        <script src="/static/bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+    <h1>password manager</h1>
+    <div class="container">
+        <table class="table table-hover">
+            <tr>
+                <td>序号</td>
+                <td>登录id</td>
+                <td>登录密码</td>
+                <td>登录站点名</td>
+                <td>登录url</td>
+                <td>登录区域</td>
+                <td>加密算法</td>
+                <td>操作</td>
+            </tr>
+            {% for line in data %}
+            <tr>
+                <th>{{line.id}}</th>
+                <th>{{line.siteId}}</th>
+                <th>{{line.sitePasswdEncry}}</th>
+                <th>{{line.siteName}}</th>
+                <th>{{line.siteLoginUrl}}</th>
+                <th>{{line.siteLoginArea}}</th>
+                <th>{{line.algor}}</th>
+                <th>
+                    <!-- Indicates caution should be taken with this action -->
+                    <button type="button" class="btn btn-warning" id="modify" data-toggle="modal" data-target="#myModal">修改</button>
+                    <!-- Indicates a dangerous or potentially negative action -->
+                    <button type="button" class="btn btn-danger" id="delete">删除</button>
+                </th>
+            </tr>
+            {% endfor %}
+			<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+  </div>
+</div>
+    </div>
+    <script>
+		//1. 获取row的id,ajax发送id删除数据
+		//2. 刷新页面。
+
+		//1.获取当前row的data,填充到modify的模态框中
+		// 输入框样式
+		//2.模态框ajax提交数据
+		//3.刷新页面
+    </script>
+</body>
+</html>
